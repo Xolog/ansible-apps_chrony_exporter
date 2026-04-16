@@ -31,7 +31,7 @@ chrony_exporter_docker_ports:
   - "{{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}"
 
 chrony_exporter_docker_commands:
-  - "--chrony.addr={{ redis_exporter_redis_addr }}"
+  - "--chrony.addr={{ chrony_exporter_chrony_addr }}"
   - "--web.listen-address={{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}"
 
 chrony_exporter_docker_network_name: prom_network
