@@ -26,6 +26,12 @@
 - name: Import install tasks
   ansible.builtin.include_tasks: install.yml
   tags: always
+  when: not chrony_exporter_dockerize
+
+- name: Setup container
+  ansible.builtin.include_tasks: docker.yml
+  tags: always
+  when: chrony_exporter_dockerize
 
 ### Success run flag
 - name: "Ensure /var/cache/ansible exists"

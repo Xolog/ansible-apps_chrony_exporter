@@ -1,0 +1,25 @@
+---
+- name: Create config directory
+  ansible.builtin.file:
+    dest: "{{ chrony_exporter_docker_conf_dir }}"
+    state: directory
+    mode: "0777"
+    owner: root
+    group: root
+
+- name: Start chrony exporter container
+  community.docker.docker_compose_v2:
+    state: present
+    project_name: chrony_exporter
+    definition:
+      services:
+        chrony-exporter:
+          image: "{{ chrony_exporter_docker_image }}:{{ chrony_exporter_docker_image_version }}"
+          container_name: "{{ chrony_exporter_container_name }}"
+          ports: "{{ chrony_exporter_docker_ports }}"
+          restart: always
+          commands: "{{ chrony_exporter_docker_commands }}"
+      networks:
+        default:
+          external: true
+          name: "{{ chrony_docker_network_name }}"

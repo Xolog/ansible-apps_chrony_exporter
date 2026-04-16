@@ -1,5 +1,6 @@
 ---
 ### Install
+chrony_exporter_dockerize: false
 chrony_exporter_install_method: src
 chrony_exporter_install_origin: internet  # or local
 chrony_exporter_dl_executor: host  # or localhost
@@ -20,6 +21,18 @@ chrony_exporter_temp_dir: "/tmp"
 
 # if chrony_exporter_install_origin: local
 chrony_exporter_local_files: "~/Downloads/shared-files/{{ role_path | basename }}/{{ chrony_exporter_pkg_name }}"
+
+# Docker setup
+chrony_exporter_docker_conf_dir: "/var/lib/chrony_exporter"
+chrony_exporter_docker_image: "quay.io/superq/chrony-exporter"
+chrony_exporter_docker_image_version: "0.13.3"
+chrony_exporter_container_name: "chrony_exporter"
+chrony_exporter_docker_ports:
+  - "{{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}"
+
+chrony_exporter_docker_commands:
+  - "--chrony.addr={{ redis_exporter_redis_addr }}"
+  - "--web.listen-address={{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}"
 
 ### Config
 chrony_exporter_chrony_address: "unix:///run/chrony/chronyd.sock"
