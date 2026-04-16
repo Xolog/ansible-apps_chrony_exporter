@@ -34,6 +34,8 @@ chrony_exporter_docker_commands:
   - "--chrony.addr={{ redis_exporter_redis_addr }}"
   - "--web.listen-address={{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}"
 
+chrony_exporter_docker_network_name: prom_network
+
 ### Config
 chrony_exporter_chrony_address: "unix:///run/chrony/chronyd.sock"
 chrony_exporter_web_listen: "0.0.0.0"

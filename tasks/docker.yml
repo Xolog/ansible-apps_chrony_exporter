@@ -22,4 +22,4 @@
       networks:
         default:
           external: true
-          name: "{{ chrony_docker_network_name }}"
+          name: "{{ chrony_exporter_docker_network_name }}"
