@@ -18,7 +18,7 @@
           container_name: "{{ chrony_exporter_container_name }}"
           ports: "{{ chrony_exporter_docker_ports }}"
           restart: always
-          commands: "{{ chrony_exporter_docker_commands }}"
+          command: "{{ chrony_exporter_docker_commands }}"
       networks:
         default:
           external: true
