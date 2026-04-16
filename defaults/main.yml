@@ -25,7 +25,7 @@ chrony_exporter_local_files: "~/Downloads/shared-files/{{ role_path | basename }
 # Docker setup
 chrony_exporter_docker_conf_dir: "/var/lib/chrony_exporter"
 chrony_exporter_docker_image: "quay.io/superq/chrony-exporter"
-chrony_exporter_docker_image_version: "0.13.3"
+chrony_exporter_docker_image_version: "latest"
 chrony_exporter_container_name: "chrony_exporter"
 chrony_exporter_docker_ports:
   - "{{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}:9123"
