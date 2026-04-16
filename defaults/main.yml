@@ -34,10 +34,12 @@ chrony_exporter_docker_commands:
   - "--chrony.address={{ chrony_exporter_chrony_address }}"
   - "--web.listen-address={{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}"
 
-chrony_exporter_docker_network_name: prom_network
+chrony_exporter_extra_hosts:
+  - "{{ ansible_host }}:{{ ansible_ip }}"
+  - host.docker.internal:host-gateway
 
 ### Config
-chrony_exporter_chrony_address: "unix:///run/chrony/chronyd.sock"
+chrony_exporter_chrony_address: "unix:///run/chrony/chronyd.sock"  # for docker change to localhost or 127.0.0.1
 chrony_exporter_web_listen: "0.0.0.0"
 chrony_exporter_web_port: "9101"
 chrony_exporter_loglevel: "info"
