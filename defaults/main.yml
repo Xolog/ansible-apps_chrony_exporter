@@ -28,7 +28,7 @@ chrony_exporter_docker_image: "quay.io/superq/chrony-exporter"
 chrony_exporter_docker_image_version: "0.13.3"
 chrony_exporter_container_name: "chrony_exporter"
 chrony_exporter_docker_ports:
-  - "{{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}"
+  - "{{ chrony_exporter_web_listen }}:{{ chrony_exporter_web_port }}:9123"
 
 chrony_exporter_docker_commands:
   - "--chrony.address={{ chrony_exporter_chrony_address }}"
